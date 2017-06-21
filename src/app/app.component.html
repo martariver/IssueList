@@ -1,0 +1,37 @@
+<app-header></app-header>
+
+<div class="container">
+    <h3>Selecciona una opción:</h3>
+    <div class="btn-group" data-toggle="buttons">
+        <label class="radio-inline">
+            <input type="radio" id="optUser" name="opt" [(ngModel)]="opt" value="user">Usuario
+        </label>
+        <label class="radio-inline">
+            <input type="radio" id="optRepo" name="opt" [(ngModel)]="opt" value="repo">Repositorio
+        </label>
+    </div>
+    
+    <div *ngIf="opt == 'user' ">
+        <div class="input-group">
+             <input type="text" class="form-control" placeholder="Usuario de Github">
+             <span class="input-group-btn" style="width:0;">
+                 <button class="btn btn-default" type="button" (click)="getUserRepositories()">Buscar!</button>
+            </span>
+        </div>
+    </div>
+    <div *ngIf="opt == 'repo' ">
+        <div class="input-group">
+            <input type="text" class="form-control" placeholder="Repositorio de Github">
+            <span class="input-group-btn" style="width:0;">
+                <button class="btn btn-default" type="button" (click)="getUserRepositories()">Buscar!</button>
+            </span>
+        </div>
+    </div>
+    </div>
+
+
+
+
+<app-footer></app-footer>
+
+
