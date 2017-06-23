@@ -7,8 +7,8 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class SearchUsersService {
   private getUserDetails = "https://api.github.com/users/";
-  private getRepo = "'https://api.github.com/repos/'";
-  private getUserRepo = "'https://api.github.com/users/'";
+  private getRepo = "https://api.github.com/repos/";
+  private getUserRepo = "https://api.github.com/users/";
 
   constructor(private http: Http) { }
 
@@ -22,6 +22,7 @@ export class SearchUsersService {
         .map((res: Response) => res.json())
         .catch(this.handleError);
     }
+    //console.log(user);
   }
 
     //método para obtener las issues a partir del usuario y el repositorio
@@ -30,6 +31,7 @@ export class SearchUsersService {
       return this.http.get(url)
       .map(data => data.json())
       .catch(error => this.handleError(error));
+      
   }
 
     //método para obtener los repositorios de un usuario
@@ -37,7 +39,8 @@ export class SearchUsersService {
     let url = this.getUserRepo + user + '/repos';  
     return this.http.get(url)
       .map(data => data.json())
-      .catch(error => this.handleError(error))
+      .catch(error => this.handleError(error)) 
+      
   }
 
   private handleError(error: any) {

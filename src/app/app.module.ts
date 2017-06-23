@@ -5,17 +5,11 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule, JsonpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './header/header.component';
-import { FooterComponent } from './footer/footer.component';
-import { SearchUsersComponent } from './search-users/search-users.component';
 import { SearchUsersService } from './search-users.service';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent,
-    FooterComponent,
-    SearchUsersComponent
   ],
   imports: [
     BrowserModule,

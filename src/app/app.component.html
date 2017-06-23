@@ -1,37 +1,89 @@
-<app-header></app-header>
 
-<div class="container">
+<div id="header">
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="row">
+            <h1>LISTADO DE ISSUES</h1>
+        </div>
+    </nav>
+</div>
+
+<div class="container col-xs-12 col-md-10">
     <h3>Selecciona una opción:</h3>
     <div class="btn-group" data-toggle="buttons">
         <label class="radio-inline">
             <input type="radio" id="optUser" name="opt" [(ngModel)]="opt" value="user">Usuario
         </label>
         <label class="radio-inline">
-            <input type="radio" id="optRepo" name="opt" [(ngModel)]="opt" value="repo">Repositorio
+            <input type="radio" id="optRepo" name="opt" [(ngModel)]="opt" value="repo">URL
         </label>
     </div>
     
     <div *ngIf="opt == 'user' ">
         <div class="input-group">
-             <input type="text" class="form-control" placeholder="Usuario de Github">
+             <input type="text" class="form-control" placeholder="Usuario de Github" [(ngModel)]="userName">
              <span class="input-group-btn" style="width:0;">
-                 <button class="btn btn-default" type="button" (click)="getUserRepositories()">Buscar!</button>
+                 <button class="btn btn-default" type="button" (click)="getUserRepositoriesByUser()">Buscar!</button>
             </span>
         </div>
+
     </div>
     <div *ngIf="opt == 'repo' ">
         <div class="input-group">
-            <input type="text" class="form-control" placeholder="Repositorio de Github">
+            <input type="text" class="form-control" placeholder="Url del repositorio" [(ngModel)]="repositoryUrl">
             <span class="input-group-btn" style="width:0;">
-                <button class="btn btn-default" type="button" (click)="getUserRepositories()">Buscar!</button>
+                <button class="btn btn-default" type="button" (click)="getIssueListByUrl()">Buscar!</button>
             </span>
+        </div> 
+    </div>
+   
+
+    <div class="input-group col-xs-4" *ngIf="repositories">
+        <h3>Listado de repositorios de {{userName}}:</h3>
+        <div *ngIf="repositories.length == 0" class="alert alert-warning" role="alert">
+            <strong>El usuario no tiene repositorios</strong>
         </div>
+        <select *ngIf="repositories.length > 0" class="form-control" [(ngModel)]="selectedRepo" (change)="getIssueListByUserRepository()">
+              <option value="" selected>-- Selecciona un repositorio --</option>
+              <option *ngFor="let repository of repositories">{{repository.name}}</option>
+        </select>
+    </div> 
+
+    <div class="input-group" *ngIf="issues">
+       <div *ngIf="issues.length == 0" class="alert alert-warning" role="alert">
+            <strong>El repositorio no tiene issues</strong>
+       </div>
+    
+
+    <div *ngIf="issues.length > 0">
+     <table class="table table-bordered">
+        <thead>
+        <tr>
+        <th>Titulo</th>
+        <th>Propietario</th>
+        <th>Url</th>
+        </tr>
+        </thead>
+        <tbody>
+        
+            <tr *ngFor="let issue of issues"> 
+               
+                <td class="fit-cell">{{issue.title}} </td>
+                <td class="fit-cell">{{issue.owner}} </td>
+                <td class="fit-cell">{{issue.html_url}} </td>
+            </tr> 
+        </tbody>
+      </table>
+         
+      
     </div>
+      
     </div>
+ </div>
 
 
 
 
-<app-footer></app-footer>
+
+
 
 
