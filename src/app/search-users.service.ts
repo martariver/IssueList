@@ -23,6 +23,7 @@ export class SearchUsersService {
         .catch(this.handleError);
     }
     //console.log(user);
+    //console.log(this.handleError);
   }
 
     //método para obtener las issues a partir del usuario y el repositorio

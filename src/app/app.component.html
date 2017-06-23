@@ -11,10 +11,10 @@
     <h3>Selecciona una opción:</h3>
     <div class="btn-group" data-toggle="buttons">
         <label class="radio-inline">
-            <input type="radio" id="optUser" name="opt" [(ngModel)]="opt" value="user">Usuario
+            <input type="radio" id="optUser" name="opt" [(ngModel)]="opt" value="user" (click)="clean()">Usuario
         </label>
         <label class="radio-inline">
-            <input type="radio" id="optRepo" name="opt" [(ngModel)]="opt" value="repo">URL
+            <input type="radio" id="optRepo" name="opt" [(ngModel)]="opt" value="repo" (click)="clean()">URL
         </label>
     </div>
     
@@ -22,7 +22,10 @@
         <div class="input-group">
              <input type="text" class="form-control" placeholder="Usuario de Github" [(ngModel)]="userName">
              <span class="input-group-btn" style="width:0;">
-                 <button class="btn btn-default" type="button" (click)="getUserRepositoriesByUser()">Buscar!</button>
+                 <button class="btn btn-primary" type="button" (click)="getUserRepositoriesByUser()">Buscar!</button>
+            </span>
+            <span class="input-group-btn " style="width:0;">
+                <button class="btn btn-primary glyphicon glyphicon-refresh" type="button" (click)="clean()"></button>
             </span>
         </div>
 
@@ -31,12 +34,18 @@
         <div class="input-group">
             <input type="text" class="form-control" placeholder="Url del repositorio" [(ngModel)]="repositoryUrl">
             <span class="input-group-btn" style="width:0;">
-                <button class="btn btn-default" type="button" (click)="getIssueListByUrl()">Buscar!</button>
+                <button class="btn btn-primary" type="button" (click)="getIssueListByUrl()">Buscar!</button>
+            </span>
+            <span class="input-group-btn" style="width:0;">
+                <button class="btn btn-primary glyphicon glyphicon-refresh" type="button" (click)="clean()" ></button>
             </span>
         </div> 
+        
     </div>
-   
 
+ 
+
+<div *ngIf="dataLoaded == true">
     <div class="input-group col-xs-4" *ngIf="repositories">
         <h3>Listado de repositorios de {{userName}}:</h3>
         <div *ngIf="repositories.length == 0" class="alert alert-warning" role="alert">
@@ -55,9 +64,10 @@
     
 
     <div *ngIf="issues.length > 0">
-     <table class="table table-bordered">
+     <table class="table table-striped table-bordered">
         <thead>
         <tr>
+             <th>Id</th>
         <th>Titulo</th>
         <th>Propietario</th>
         <th>Url</th>
@@ -66,18 +76,23 @@
         <tbody>
         
             <tr *ngFor="let issue of issues"> 
-               
+                <td class="fit-cell">{{issue.id}} </td>
                 <td class="fit-cell">{{issue.title}} </td>
-                <td class="fit-cell">{{issue.owner}} </td>
+                <td class="fit-cell">{{issue.user.login}} </td>
                 <td class="fit-cell">{{issue.html_url}} </td>
             </tr> 
         </tbody>
       </table>
-         
-      
     </div>
       
+
+    </div>  
+
     </div>
+
+    <div *ngIf="error" class="alert alert-warning" role="alert">
+            <strong>{{error}}</strong>
+        </div> 
  </div>
 
 

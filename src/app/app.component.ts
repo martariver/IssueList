@@ -18,6 +18,7 @@ export class AppComponent {
   repositories= null;
   selectedRepo;
   error;
+  dataLoaded=false;
 
   constructor(private searchService: SearchUsersService) {}
   
@@ -39,13 +40,14 @@ export class AppComponent {
 
   }
    
-   //método para obtener los repositorios del usuario obtenido de la url
+//método para obtener los repositorios del usuario obtenido de la url
     getUserRepositoriesByUser() {
     if (this.userName != null){
       this.issues = null;
       this.repository = '';
       this.repositories = null;
       this.error = null;
+      this.dataLoaded = true;
       this.searchService.getUserRepositories(this.userName)
         .subscribe(
         data => {
@@ -58,8 +60,9 @@ export class AppComponent {
     }
   }
 
- //método para obtener el listado de issues a partir de la url
+//método para obtener el listado de issues a partir de la url
   getIssueListByUrl(): void {
+    this.dataLoaded = true;
     this.error = null;
     this.searchService.getDetailsByUserName(this.getUserName())
       .subscribe(
@@ -86,6 +89,7 @@ export class AppComponent {
 getIssueListByUserRepository(): void {
     this.error = null;
     this.issues = null;
+    this.dataLoaded = true;
     this.searchService.getDetailsByUserName(this.userName)
       .subscribe(
       data => this.user = data
@@ -100,6 +104,15 @@ getIssueListByUserRepository(): void {
       }
       );
 
+  }
+
+  
+
+  clean(){
+    this.userName = '';
+    this.repositoryUrl= '';
+    this.dataLoaded= false;
+    this.selectedRepo= null;
   }
 
 }
