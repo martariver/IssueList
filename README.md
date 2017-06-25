@@ -1,31 +1,42 @@
-# ProyectoAngular4
+# IssueList
 
-This project was generated with [angular-cli](https://github.com/angular/angular-cli) version 1.0.0-beta.28.3.
+Aplicación generada con Angular-CLI para mostrar el listado de Issues de un repositorio de Github. 
+Ofrece la posibilidad de realizar la búsqueda por:
+    - URL del repositorio
+    - Usuario de Github. En este caso se mostraran los repositorios del usuario y hay que seleccionar uno para ver el listado de Issues.
 
-## Development server
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## Pre-requisitos
 
-## Code scaffolding
+IDE (Visual Studio Code, Eclipse, etc.).
+Git
+Node.js
+Angular-CLI
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive/pipe/service/class/module`.
+## Instalación
 
-## Build
+- Descarga el código del repositorio:
+- git clone https://github.com/martariver/IssueList.git
+- Ubicate en la carpeta del proyecto:
+    cd proyecto-angular4
+-Instala las dependencias:
+    npm install
+    npm install bootstrap@3
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
+## Dependencias y librerias
 
-## Running unit tests
+- Bootstrap 3
+- Angular4
+- Github API v3
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Ejecutar el proyecto
 
-## Running end-to-end tests
+Ejecuta el siguiente comando en la consola:
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-Before running the tests make sure you are serving the app via `ng serve`.
+- Para iniciar el servidor: ng serve 
+- En el navegador, escribe la siguiente ruta:
+    localhost:4200
 
-## Deploying to GitHub Pages
+## Autor
 
-Run `ng github-pages:deploy` to deploy to GitHub Pages.
+Marta Rivera
 
-## Further help
-
-To get more help on the `angular-cli` use `ng help` or go check out the [Angular-CLI README](https://github.com/angular/angular-cli/blob/master/README.md).

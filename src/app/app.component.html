@@ -1,10 +1,9 @@
 
 <div id="header">
-    <nav class="navbar navbar-default navbar-fixed-top">
         <div class="row">
-            <h1>LISTADO DE ISSUES</h1>
+            <h1> LISTADO DE ISSUES</h1>
+           
         </div>
-    </nav>
 </div>
 
 <div class="container col-xs-12 col-md-10">
@@ -22,10 +21,14 @@
         <div class="input-group">
              <input type="text" class="form-control" placeholder="Usuario de Github" [(ngModel)]="userName">
              <span class="input-group-btn" style="width:0;">
-                 <button class="btn btn-primary" type="button" (click)="getUserRepositoriesByUser()">Buscar!</button>
+                 <button class="btn btn-primary" type="button" (click)="getUserRepositoriesByUser()">
+                      <span class="glyphicon glyphicon-search"></span> Buscar
+                 </button>
             </span>
             <span class="input-group-btn " style="width:0;">
-                <button class="btn btn-primary glyphicon glyphicon-refresh" type="button" (click)="clean()"></button>
+                <button class="btn btn-primary" type="button" (click)="clean()">
+                    <span class="glyphicon glyphicon-trash"></span> Limpiar
+                </button>
             </span>
         </div>
 
@@ -34,10 +37,14 @@
         <div class="input-group">
             <input type="text" class="form-control" placeholder="Url del repositorio" [(ngModel)]="repositoryUrl">
             <span class="input-group-btn" style="width:0;">
-                <button class="btn btn-primary" type="button" (click)="getIssueListByUrl()">Buscar!</button>
+                <button class="btn btn-primary" type="button" (click)="getIssueListByUrl()">
+                     <span class="glyphicon glyphicon-search"></span> Buscar
+                </button>
             </span>
-            <span class="input-group-btn" style="width:0;">
-                <button class="btn btn-primary glyphicon glyphicon-refresh" type="button" (click)="clean()" ></button>
+            <span class="input-group-btn " style="width:0;">
+                <button class="btn btn-primary" type="button" (click)="clean()">
+                    <span class="glyphicon glyphicon-trash"></span> Limpiar
+                </button>
             </span>
         </div> 
         
@@ -71,6 +78,7 @@
         <th>Titulo</th>
         <th>Propietario</th>
         <th>Url</th>
+        <th>Más Info</th>
         </tr>
         </thead>
         <tbody>
@@ -80,11 +88,12 @@
                 <td class="fit-cell">{{issue.title}} </td>
                 <td class="fit-cell">{{issue.user.login}} </td>
                 <td class="fit-cell">{{issue.html_url}} </td>
+                <td><a class="btn btn-warning" href="{{issue.html_url}}" target="_blank"><i class=" glyphicon glyphicon-eye-open" ></i></a></td>
             </tr> 
         </tbody>
       </table>
     </div>
-      
+     
 
     </div>  
 
@@ -93,6 +102,8 @@
     <div *ngIf="error" class="alert alert-warning" role="alert">
             <strong>{{error}}</strong>
         </div> 
+
+ 
  </div>
 
 

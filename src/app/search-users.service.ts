@@ -21,6 +21,7 @@ export class SearchUsersService {
       return this.http.get(url)
         .map((res: Response) => res.json())
         .catch(this.handleError);
+    
     }
     //console.log(user);
     //console.log(this.handleError);

@@ -42,7 +42,7 @@ export class AppComponent {
    
 //método para obtener los repositorios del usuario obtenido de la url
     getUserRepositoriesByUser() {
-    if (this.userName != null){
+    if (this.userName != null && this.userName != ''){
       this.issues = null;
       this.repository = '';
       this.repositories = null;
@@ -113,6 +113,8 @@ getIssueListByUserRepository(): void {
     this.repositoryUrl= '';
     this.dataLoaded= false;
     this.selectedRepo= null;
+    this.issues = '';
+    this.repositories = null;
   }
 
 }
